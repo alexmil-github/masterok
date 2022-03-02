@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -41,5 +42,19 @@ class UserController extends Controller
     {
         Auth::logout();
         return redirect()->route( 'login' );
+    }
+
+    public function profile_page() {
+
+        $user_id = Auth::id();
+
+        $app = DB::table("applications")->where("user_id", $user_id)->orderby("created_at", "DESC")->get();
+
+        $categories = DB::table("categories")->get();
+
+        return view("profile", [
+            "app" => $app,
+            "categories" => $categories
+        ]);
     }
 }

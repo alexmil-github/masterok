@@ -1,27 +1,21 @@
-<form method="POST" action="reg" style="text-align: center; margin: auto;">
-    {!! csrf_field() !!}
+@extends("layouts.main")
 
-    <div>
-        ФИО
-        <input style="margin: 10px;" type="text" name="fio" id="fio">
-    </div>
-    <div>
-        email
-        <input style="margin: 10px;" type="email" name="email" id="email">
-    </div>
+@section("content")
 
-    <div>
-        login
-        <input style="margin: 10px;" type="text" name="login" id="login">
+<div class="head" id="register">Регистрация</div>
+<form action="/reg" method="POST">
+    @csrf
+    <input type="text" name="fio" placeholder="ФИО (кириллица, дефис, пробел, до 32 символов)" pattern="[а-яА-ЯёЁ\-\s]{1,32}" required>
+    <input type="text" name="login" placeholder="Логин (латиница, до 16 символов)" pattern="[a-zA-Z]{1,16}" required>
+    <input type="email" name="email" pattern=".{1,32}" placeholder="Email (наличие @, до 32 символов)" required>
+    <input type="password" name="password" pattern=".{1,32}" placeholder="Пароль (до 32 символов)" required>
+    <input type="password" name="password_check" placeholder="Повтор пароля" required>
+    <div class="line">
+        <input type="checkbox" required>
+        <p>Согласие на обработку персональных данных</p>
     </div>
-
-    <div>
-        Пароль
-        <input style="margin: 10px;" type="password" name="password" id="password">
-    </div>
-
-
-    <div>
-        <button style="margin: 10px;" type="submit">Зарегистрироваться</button>
-    </div>
+    <button>Зарегистрироваться</button>
 </form>
+
+@endsection
+

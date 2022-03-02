@@ -21,3 +21,7 @@ Route::get('/reg', [SiteController::class, 'reg']);
 Route::post('/reg', [UserController::class, 'registration']);
 Route::get('/logout', [ UserController::class, 'logout' ])->name('logout');
 
+// Страница личного кабинета
+Route::get("/profile", [UserController::class, "profile_page"]);
+
+

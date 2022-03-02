@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <h1>Войдите</h1>
+    <h2><center>Войдите</center></h2>
     <form method="post">
         @csrf
         <div>
